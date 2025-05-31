@@ -26,7 +26,7 @@ Please see here for information on how to build from source: [BUILDING](BUILDING
 
 ### Changelog for VirtualBox ###
 
-<strong>VirtualBox 7.1.0</strong> (released 11.09.2024)
+<strong>VirtualBox 7.1.0</strong> (released 11.09.2024) ()
 
 This is a major update. The following new features were added:
 
