@@ -1,0 +1,40 @@
+name: Build Portable VirtualBox
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+  pull_request:
+    branches:
+      - main  # Trigger on PRs to main branch
+  workflow_dispatch:  # Allows you to manually trigger the workflow from the UI
+
+jobs:
+  build:
+    runs-on: windows-latest  # Runs on a Windows machine
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up MSYS2 (for building)
+      - name: Set up MSYS2
+        run: |
+          choco install msys2
+          pacman -S --noconfirm git make
+
+      # Step 3: Build Portable VirtualBox
+      - name: Build Portable VirtualBox
+        run: |
+          git clone https://github.com/Zezinas/Portable-VirtualBox.git
+          cd Portable-VirtualBox
+          # You can add specific build steps here, based on BUILDING.md
+          # For example: run the build.bat script
+
+      # Step 4: Upload build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: portable-vm-build
+          path: ./build_output  # Adjust this path to where the build output is located
